@@ -61,7 +61,7 @@ services:
       - my_php7:webstack_php
     ports:
       - "8080:8080"
-      - "8090:90"
+      - "8091:91"
     restart: always
     command: nginx -c /nginx_sf.conf
 #volumes:
