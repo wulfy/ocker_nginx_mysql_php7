@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y fontconfig python tar bzip2 npm locales
 RUN locale-gen fr_FR.UTF-8
 ENV LANG fr_FR.UTF-8
 ENV LANGUAGE fr_FR:fr
-ENV LC_ALL fr_FR.UTF-8
+ENV LC_ALL us_US.UTF-8
 
 # Downloading phantomjs
 ADD https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 /tmp/phantomjs-2.1.1-linux-x86_64.tar.bz2
