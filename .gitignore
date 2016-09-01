@@ -3,3 +3,4 @@ data/*
 docker-compose.yml
 env.sh
 reset.sh
+nginx/var/log/*
