@@ -37,7 +37,6 @@ services:
     volumes:
       - "../:/usr/share/nginx/html:rw"
       - "./php7/php.ini:/usr/local/etc/php/php.ini:ro"
-      - "./data:/data:rw"
 #      - "my_casper_volume:/usr/local/bin/casperjs"
 #      - "node_volume:/usr/local/lib/node_modules/npm"
     links:
