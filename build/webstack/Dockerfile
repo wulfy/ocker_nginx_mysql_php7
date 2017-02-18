@@ -31,6 +31,6 @@ RUN mkdir /data
 VOLUME /data
 
 ## APCu
-RUN pecl install apcu-5.1.5 \
+RUN pecl install apcu-5.1.8 \
 RUN docker-php-ext-enable apcu
 
