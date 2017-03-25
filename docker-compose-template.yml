@@ -57,6 +57,7 @@ services:
       - "./nginx/nginx_${ENV}.conf:/nginx_${ENV}.conf:ro"
       - "./nginx/sites-available:/etc/nginx/sites-available:rw"
       - "./nginx/sites-enabled:/etc/nginx/sites-enabled:rw"
+      - "./docker_nginx_mysql_php7/nginx/logs:/var/log/nginx:rw"
     links:
       - my_php7:webstack_php
     ports:
@@ -65,5 +66,37 @@ services:
       - "80:80"
     restart: always
     command: nginx -c /nginx_${ENV}.conf
+
+  my_rabbitMQ:
+    image: rabbitmq:management
+    hostname: "rabbit1"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq1"
+    #volumes:
+      #- "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
+      #- "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro"
+      #- "./autocluster-0.4.1.ez:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez"
+
+  my_stats:
+    build: ./docker_nginx_mysql_php7/build/docker-grafana-graphite
+    hostname: "stats"
+    image: grafana-graphite-statsd
+    volumes:
+      - "./docker_nginx_mysql_php7/nginx/logs:/var/log:r"
+    ports:
+      - "92:80"
+      - "81:81"
+      - "8125:8125/udp"
+      - "2003:2003"
+    labels:
+      NAME: "stats"
 #volumes:
 #    my_casper_volume : {}

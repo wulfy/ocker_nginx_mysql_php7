@@ -4,3 +4,6 @@ docker-compose.yml
 env.sh
 reset.sh
 nginx/var/log/*
+build/docker-grafana-graphite/
+nginx/sites-enabled/
+nginx/var/log/
