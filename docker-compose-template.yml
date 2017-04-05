@@ -71,9 +71,9 @@ services:
     image: rabbitmq:management
     hostname: "rabbit1"
     environment:
-      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_COOKIE}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PWD}
       RABBITMQ_DEFAULT_VHOST: "/"
     ports:
       - "15672:15672"
@@ -90,7 +90,8 @@ services:
     hostname: "stats"
     image: grafana-graphite-statsd
     volumes:
-      - "./docker_nginx_mysql_php7/nginx/logs:/var/log:r"
+      - "./docker_nginx_mysql_php7/logs/nginx:/var/log/nginx_web:ro"
+      - "./docker_nginx_mysql_php7/logs/nginx_stats:/var/log/nginx:rw"
     ports:
       - "92:80"
       - "81:81"
