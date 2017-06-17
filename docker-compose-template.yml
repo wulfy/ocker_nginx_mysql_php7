@@ -40,7 +40,7 @@ services:
 #      - "my_casper_volume:/usr/local/bin/casperjs"
 #      - "node_volume:/usr/local/lib/node_modules/npm"
     links:
-      - my_mysql
+#      - my_mysql
 #      - my_mycasper
     ports:
       - "9000:9000"
@@ -62,11 +62,20 @@ services:
       - my_php7:webstack_php
     ports:
       - "8080:8080"
+      - "8090:90"
       - "8091:91"
+      - "8083:8083"
       - "80:80"
     restart: always
     command: nginx -c /nginx_${ENV}.conf
 
+  my_jenkins:
+    image: jenkinsci/jenkins:lts
+    ports:
+      - "5000:5000"
+      - "8082:8080"
+
+      
   my_rabbitMQ:
     image: rabbitmq:management
     hostname: "rabbit1"
@@ -97,6 +106,8 @@ services:
       - "81:81"
       - "8125:8125/udp"
       - "2003:2003"
+      - "9200:9200"
+      - "9300:9300"
     labels:
       NAME: "stats"
 #volumes:
