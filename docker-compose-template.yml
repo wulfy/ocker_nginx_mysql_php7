@@ -39,7 +39,7 @@ services:
       - "./php7/php.ini:/usr/local/etc/php/php.ini:ro"
 #      - "my_casper_volume:/usr/local/bin/casperjs"
 #      - "node_volume:/usr/local/lib/node_modules/npm"
-    links:
+#    links:
 #      - my_mysql
 #      - my_mycasper
     ports:
@@ -95,12 +95,12 @@ services:
       #- "./autocluster-0.4.1.ez:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez"
 
   my_stats:
-    build: ./docker_nginx_mysql_php7/build/docker-grafana-graphite
+    build: ./build/docker-grafana-graphite
     hostname: "stats"
     image: grafana-graphite-statsd
     volumes:
-      - "./docker_nginx_mysql_php7/logs/nginx:/var/log/nginx_web:ro"
-      - "./docker_nginx_mysql_php7/logs/nginx_stats:/var/log/nginx:rw"
+      - "./logs/nginx:/var/log/nginx_web:ro"
+      - "./logs/nginx_stats:/var/log/nginx:rw"
     ports:
       - "92:80"
       - "81:81"
