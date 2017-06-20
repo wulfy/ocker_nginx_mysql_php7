@@ -27,6 +27,9 @@ RUN cd /tmp/ && tar -xjvf /tmp/phantomjs-2.1.1-linux-x86_64.tar.bz2 && cp /tmp/p
 # Installing casperjs
 RUN npm install casperjs --global
 
+# Install node
+apt-get install nodejs npm
+
 # Install bower and grunt cli
 RUN npm install -g bower grunt-cli
 
