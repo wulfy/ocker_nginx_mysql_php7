@@ -9,3 +9,4 @@ nginx/sites-enabled/
 nginx/var/log/
 nginx/logs
 logs/
+*.bck
