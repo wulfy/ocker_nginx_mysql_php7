@@ -10,3 +10,4 @@ nginx/var/log/
 nginx/logs
 logs/
 *.bck
+jenkins
