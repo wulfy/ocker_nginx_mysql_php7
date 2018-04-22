@@ -1,6 +1,5 @@
 data/*
 .DS_Store
-docker-compose.yml
 env.sh
 reset.sh
 nginx/var/log/*
@@ -11,3 +10,4 @@ nginx/logs
 logs/
 *.bck
 jenkins
+.env

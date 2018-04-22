@@ -1,4 +1,4 @@
-FROM php:7.0-fpm
+FROM php:7.1-fpm
 
 RUN apt-get update
 RUN apt-get install -y zlib1g-dev libjpeg-dev libpng-dev libfreetype6-dev
@@ -39,7 +39,7 @@ RUN npm install -g bower grunt-cli
 RUN mkdir /data
 VOLUME /data
 
-## APCu
-RUN pecl install apcu-5.1.8 \
-RUN docker-php-ext-enable apcu
+## APCu -useless with php7 which already use an opcache
+#RUN pecl install apcu-5.1.8 \
+#RUN docker-php-ext-enable apcu
 

@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   my_mysql:
     image: mysql:latest
@@ -6,7 +6,7 @@ services:
       - "/Users/llasry/Documents/www/mysql_data:/var/lib/mysql"
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ENV_MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
 #  my_node:
 #    image: node:onbuild
@@ -45,6 +45,7 @@ services:
     ports:
       - "9000:9000"
       - "3000:3000"
+      - "4000:4000"
     restart: always
     working_dir: "/usr/share/nginx/html"
 
@@ -55,7 +56,7 @@ services:
     volumes:
       - "../:/usr/share/nginx/html:rw"
       - "./nginx/var/log:/var/log/nginx:rw"
-      - "./nginx/nginx_${ENV}.conf:/nginx_${ENV}.conf:ro"
+      - "./nginx/nginx_dev.conf:/nginx_dev.conf:ro"
       - "./nginx/sites-available:/etc/nginx/sites-available:rw"
       - "./nginx/sites-enabled:/etc/nginx/sites-enabled:rw"
     links:
@@ -65,7 +66,9 @@ services:
       - "8090:90"
       - "8091:91"
       - "8083:8083"
+      - "8084:8084"
       - "80:80"
+      - "8000:8000"
     restart: always
     command: nginx -c /nginx_${ENV}.conf
 
@@ -104,7 +107,7 @@ services:
     ports:
       - "92:80"
       - "85:81"
-      - "8125:8125/udp"
+      - "8124:8124/udp"
       - "2003:2003"
       - "9200:9200"
       - "9300:9300"
