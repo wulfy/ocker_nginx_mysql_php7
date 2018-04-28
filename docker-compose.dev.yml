@@ -1,0 +1,13 @@
+version: '3'
+services:
+
+  my_nginx:
+    environment:
+      - TEST:1
+    #command: /bin/bash -c "nginx_conf=$(cat /etc/nginx/conf.d/nginx.template) && Environment.ExpandEnvironmentVariables($nginx_conf) > /etc/nginx/conf.d/nginx.conf && nginx -c /etc/nginx/conf.d/nginx.conf"
+
+  my_jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "5000:5000"
+      - "8082:8080"

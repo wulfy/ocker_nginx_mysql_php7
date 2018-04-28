@@ -1,0 +1,46 @@
+version: '3'
+services:
+
+  my_jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "5000:5000"
+      - "8082:8080"
+
+      
+  my_rabbitMQ:
+    image: rabbitmq:management
+    hostname: "rabbit1"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_COOKIE}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PWD}
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq1"
+    #volumes:
+      #- "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
+      #- "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro"
+      #- "./autocluster-0.4.1.ez:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez"
+
+  my_stats:
+    build: ./build/docker-grafana-graphite
+    hostname: "stats"
+    image: grafana-graphite-statsd
+    volumes:
+      - "./logs/nginx:/var/log/nginx_web:ro"
+      - "./logs/nginx_stats:/var/log/nginx:rw"
+    ports:
+      - "92:80"
+      - "85:81"
+      - "8124:8124/udp"
+      - "2003:2003"
+      - "9200:9200"
+      - "9300:9300"
+    labels:
+      NAME: "stats"
+#volumes:
+#    my_casper_volume : {}

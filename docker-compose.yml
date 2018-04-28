@@ -56,62 +56,18 @@ services:
     volumes:
       - "../:/usr/share/nginx/html:rw"
       - "./nginx/var/log:/var/log/nginx:rw"
-      - "./nginx/nginx_dev.conf:/nginx_dev.conf:ro"
+      - "./nginx/nginx.template.conf:/etc/nginx/conf.d/nginx.template:rw"
       - "./nginx/sites-available:/etc/nginx/sites-available:rw"
       - "./nginx/sites-enabled:/etc/nginx/sites-enabled:rw"
     links:
       - my_php7:webstack_php
+    environment:
+      - KEEPALIVE_TIMEOUT=${KEEPALIVE_TIMEOUT}
     ports:
       - "8080:8080"
       - "8090:90"
       - "8091:91"
       - "8083:8083"
-      - "8084:8084"
       - "80:80"
-      - "8000:8000"
     restart: always
-    command: nginx -c /nginx_${ENV}.conf
-
-  my_jenkins:
-    image: jenkinsci/jenkins:lts
-    ports:
-      - "5000:5000"
-      - "8082:8080"
-
-      
-  my_rabbitMQ:
-    image: rabbitmq:management
-    hostname: "rabbit1"
-    environment:
-      RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_COOKIE}
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PWD}
-      RABBITMQ_DEFAULT_VHOST: "/"
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    labels:
-      NAME: "rabbitmq1"
-    #volumes:
-      #- "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
-      #- "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro"
-      #- "./autocluster-0.4.1.ez:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez"
-
-  my_stats:
-    build: ./build/docker-grafana-graphite
-    hostname: "stats"
-    image: grafana-graphite-statsd
-    volumes:
-      - "./logs/nginx:/var/log/nginx_web:ro"
-      - "./logs/nginx_stats:/var/log/nginx:rw"
-    ports:
-      - "92:80"
-      - "85:81"
-      - "8124:8124/udp"
-      - "2003:2003"
-      - "9200:9200"
-      - "9300:9300"
-    labels:
-      NAME: "stats"
-#volumes:
-#    my_casper_volume : {}
+    command: /bin/bash -c "cp /etc/nginx/conf.d/nginx.template /etc/nginx/conf.d/nginx.conf && nginx -c /etc/nginx/conf.d/nginx.conf"
