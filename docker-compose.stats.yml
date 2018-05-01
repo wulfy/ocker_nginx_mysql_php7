@@ -1,0 +1,21 @@
+version: '3'
+services:
+  
+  my_stats:
+    build: ./build/docker-grafana-graphite
+    hostname: "stats"
+    image: grafana-graphite-statsd
+    volumes:
+      - "./logs/nginx:/var/log/nginx_web:ro"
+      - "./logs/nginx_stats:/var/log/nginx:rw"
+    ports:
+      - "92:80"
+      - "85:81"
+      - "8124:8124/udp"
+      - "2003:2003"
+      - "9200:9200"
+      - "9300:9300"
+    labels:
+      NAME: "stats"
+#volumes:
+#    my_casper_volume : {}

@@ -1,2 +1,0 @@
-#!/bin/bash 
-unset MYSQL_ENV_MYSQL_ROOT_PASSWORD
