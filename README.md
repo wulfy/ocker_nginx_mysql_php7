@@ -1,6 +1,7 @@
 # docker_nginx_mysql_php7
 
 Development and production stack for multiple projects
+⚠︎ Don't use 'as it' for critical production server. I'm using it for my own websites but i'm not a sysadmin, I'm still learning  ⚠︎
 
 ## NGINX
 last stable nginx with nginx configuration.
