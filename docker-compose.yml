@@ -71,5 +71,6 @@ services:
       - "8091:91"
       - "8083:8083"
       - "80:80"
+      - "443:443"
     restart: always
     command: /bin/bash -c "cp /etc/nginx/conf.d/nginx.template /etc/nginx/conf.d/nginx.conf && nginx -c /etc/nginx/conf.d/nginx.conf"

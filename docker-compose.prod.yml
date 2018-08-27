@@ -1,5 +1,8 @@
 version: '3'
 services:
+  my_nginx:
+    volumes:
+      - "/etc/letsencrypt:/etc/letsencrypt:ro"
 
   my_jenkins:
     image: jenkins/jenkins:lts
