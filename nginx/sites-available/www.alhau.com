@@ -21,8 +21,8 @@ server {
 }
 
 server {
-    #listen 80 ;
-    listen 443 ssl default_server;
+    listen 443 ssl http2;
+    #listen [::]:443 ssl http2;
 
     server_name www.alhau.com alhau.com;
 
@@ -31,7 +31,11 @@ server {
 
    ssl_certificate    /etc/letsencrypt/live/alhau.com/fullchain.pem;
    ssl_certificate_key  /etc/letsencrypt/live/alhau.com/privkey.pem;
-   #ssl_trusted_certificate /etc/letsencrypt/live/alhau.com/fullchain.pem;    
+   ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;
+   ssl_session_timeout  10m;
+   ssl_session_cache shared:SSL:10m;
+   ssl_prefer_server_ciphers on; 
+    #ssl_trusted_certificate /etc/letsencrypt/live/alhau.com/fullchain.pem;    
   
    # Enable OCSP stapling (http://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox)
    #ssl_stapling on;
