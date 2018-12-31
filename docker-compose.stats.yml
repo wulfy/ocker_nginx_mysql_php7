@@ -6,7 +6,7 @@ services:
     hostname: "stats"
     image: grafana-graphite-statsd
     volumes:
-      - "./logs/nginx:/var/log/nginx_web:ro"
+      - "./nginx/var/log:/var/log/nginx_web:ro"
       - "./logs/nginx_stats:/var/log/nginx:rw"
     ports:
       - "92:80"
