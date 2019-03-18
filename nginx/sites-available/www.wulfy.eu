@@ -1,13 +1,15 @@
 #blog wulfy
 server {
     listen 80;
-    server_name www.wulfy.eu wulfy.eu;
-
-    root /usr/share/nginx/html/gatsby/static/;
+    server_name wulfy.eu;
+    root /usr/share/nginx/html/gatsby/public/;
 
     location / {
-            index index.html index.htm;
+            index index.html;
             # try to serve file directly
             try_files $uri $uri/ =404;
         } 
+
+    error_log /var/log/nginx/blog_error.log;
+    access_log /var/log/nginx/blog_access.log;
 }
