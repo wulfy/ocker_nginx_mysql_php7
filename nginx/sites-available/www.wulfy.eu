@@ -1,7 +1,7 @@
 #blog wulfy
 server {
     listen 80;
-    server_name wulfy.eu;
+    server_name www.wulfy.eu wulfy.eu;
     root /usr/share/nginx/html/gatsby/public/;
 
     location / {
