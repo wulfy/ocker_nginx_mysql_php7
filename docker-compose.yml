@@ -3,7 +3,7 @@ services:
   my_mysql:
     image: mysql:5
     volumes:
-      - "/Users/llasry/Documents/www/mysql5:/var/lib/mysql"
+      - "/Users/llasry/Documents/www/mysql50:/var/lib/mysql"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
