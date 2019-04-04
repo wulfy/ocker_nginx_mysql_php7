@@ -1,14 +1,27 @@
 #blog wulfy
+
 server {
     listen 80;
     server_name www.wulfy.eu wulfy.eu;
+
+    # Alternatively, redirect all HTTP links to the matching HTTPS page
+     return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name www.wulfy.eu wulfy.eu;
     root /usr/share/nginx/html/gatsby_blog/public/;
+
+    ssl_certificate    /etc/letsencrypt/live/wulfy.eu-0002/fullchain.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/wulfy.eu-0002/privkey.pem;
 
     location / {
             index index.html;
             # try to serve file directly
             try_files $uri $uri/ =404;
-        } 
+
+        }
 
     error_log /var/log/nginx/blog_error.log;
     access_log /var/log/nginx/blog_access.log;
