@@ -15,6 +15,10 @@ server {
 
     ssl_certificate    /etc/letsencrypt/live/wulfy.eu-0002/fullchain.pem;
     ssl_certificate_key  /etc/letsencrypt/live/wulfy.eu-0002/privkey.pem;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;
+    ssl_session_timeout  10m;
+    ssl_session_cache shared:SSL:10m;
+    ssl_prefer_server_ciphers on; 
 
     location / {
             index index.html;
