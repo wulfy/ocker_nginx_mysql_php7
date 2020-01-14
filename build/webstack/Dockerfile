@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get install -y zlib1g-dev libjpeg-dev libpng-dev libfreetype6-dev
 
 RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install bcmath
@@ -36,7 +36,7 @@ RUN cd /tmp/ && tar -xjvf /tmp/phantomjs-2.1.1-linux-x86_64.tar.bz2 && cp /tmp/p
 #RUN apt-get install nodejs npm
 
 # Install node legacy
-RUN apt-get install nodejs-legacy
+RUN apt-get install nodejs
 
 # Install bower and grunt cli
 #RUN npm --g add bower grunt-cli
