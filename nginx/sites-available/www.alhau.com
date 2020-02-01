@@ -29,13 +29,12 @@ server {
     error_log /var/log/nginx/alhau_error.log;
     access_log /var/log/nginx/alhau_access.log;
 
-   ssl_certificate    /etc/letsencrypt/live/alhau.com/fullchain.pem;
-   ssl_certificate_key  /etc/letsencrypt/live/alhau.com/privkey.pem;
+   ssl_certificate    /etc/ssl/my_certs/alhau.com/www.alhau.com.crt;
+   ssl_certificate_key  /etc/ssl/my_certs/alhau.com/alhau.key;
    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;
    ssl_session_timeout  10m;
    ssl_session_cache shared:SSL:10m;
-   ssl_prefer_server_ciphers on; 
-    #ssl_trusted_certificate /etc/letsencrypt/live/alhau.com/fullchain.pem;    
+   ssl_prefer_server_ciphers on;    
   
    # Enable OCSP stapling (http://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox)
    #ssl_stapling on;

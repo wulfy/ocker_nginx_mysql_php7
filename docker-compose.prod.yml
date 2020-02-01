@@ -3,6 +3,7 @@ services:
   my_nginx:
     volumes:
       - "/etc/letsencrypt:/etc/letsencrypt:ro"
+      - "/etc/ssl/my_certs:/etc/ssl/my_certs:ro"
 
   my_jenkins:
     image: jenkins/jenkins:lts
