@@ -14,7 +14,7 @@ server {
 server {
     listen 443 ssl http2;
     server_name www.wulfy.eu wulfy.eu;
-    root /usr/share/nginx/html/gatsby_blog/public/;
+    root /usr/share/nginx/html/gatsby_blog/public/pages;
 
     ssl_certificate    /etc/letsencrypt/live/wulfy.eu-0002/fullchain.pem;
     ssl_certificate_key  /etc/letsencrypt/live/wulfy.eu-0002/privkey.pem;
