@@ -29,8 +29,10 @@ server {
     error_log /var/log/nginx/alhau_error.log;
     access_log /var/log/nginx/alhau_access.log;
 
-   ssl_certificate    /etc/ssl/my_certs/alhau.com/www.alhau.com.crt;
-   ssl_certificate_key  /etc/ssl/my_certs/alhau.com/alhau.key;
+    #ssl_certificate    /etc/ssl/my_certs/alhau.com/www.alhau.com.crt;
+    #ssl_certificate_key  /etc/ssl/my_certs/alhau.com/alhau.key;
+    ssl_certificate /etc/letsencrypt/live/alhau.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/alhau.com/privkey.pem;
    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;
    ssl_session_timeout  10m;
    ssl_session_cache shared:SSL:10m;
