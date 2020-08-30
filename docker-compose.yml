@@ -1,7 +1,7 @@
 version: '3'
 services:
   my_mysql:
-    image: mysql:5
+    image: mysql:8
     volumes:
       - "/Users/llasry/Documents/www/mysql50:/var/lib/mysql"
     restart: always
